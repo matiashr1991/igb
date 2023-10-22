@@ -3,7 +3,7 @@ import { pool } from '../db.js';
 
 export const selectActividades = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM Actividades')
+        const [rows] = await pool.query('SELECT * FROM actividades')
         res.json(rows)
     } catch (error) {
         res.status(500).json({
@@ -15,7 +15,7 @@ export const selectActividades = async (req, res) => {
 
 export const selectActividad = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM Actividades WHERE id = ?', [req.params.id])
+        const [rows] = await pool.query('SELECT * FROM actividades WHERE id = ?', [req.params.id])
         if (rows.length <= 0) return res.status(404).json({ message: 'Actividad no encontrada' })
         res.json(rows[0])
     } catch (error) {
